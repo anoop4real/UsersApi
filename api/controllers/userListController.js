@@ -2,13 +2,13 @@
 
 
 var mongoose = require('mongoose'),
-User = mongoose.model('Users');
+  User = mongoose.model('Users');
 
 
 exports.list_all_users = function(req, res) {
   User.find({}, function(err, users) {
     if (err)
-    res.send(err);
+      res.send(err);
     res.json(users);
   });
 };
@@ -32,7 +32,11 @@ exports.read_a_user = function(req, res) {
 };
 
 exports.update_a_user = function(req, res) {
-  User.findOneAndUpdate({userId: req.params.userId}, req.body, {new: true}, function(err, user) {
+  User.findOneAndUpdate({
+    userId: req.params.userId
+  }, req.body, {
+    new: true
+  }, function(err, user) {
     if (err)
       res.send(err);
     res.json(user);
@@ -47,6 +51,8 @@ exports.delete_a_user = function(req, res) {
   }, function(err, user) {
     if (err)
       res.send(err);
-    res.json({ message: 'User successfully deleted' });
+    res.json({
+      message: 'User successfully deleted'
+    });
   });
 };
